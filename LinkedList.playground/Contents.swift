@@ -1,22 +1,5 @@
-import UIKit
 import Foundation
 
-public class Node<Value> {
-    public var value: Value
-    public var next: Node?
-    public init(value: Value, next: Node? = nil) {
-        self.value = value
-        self.next = next
-    }
-}
-extension Node: CustomStringConvertible {
-    public var description: String {
-        guard let next = next else {
-            return "\(value)"
-        }
-        return "\(value) -> " + String(describing: next) + " "
-    }
-}
 
 
 func makeANode() {
@@ -28,4 +11,138 @@ func makeANode() {
     print(node1)
 }
 
-makeANode()
+//makeANode()
+
+
+func pushLinkedListExample() {
+    print("Example of pushing elements into a linkedlist")
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+    print(list)
+}
+
+pushLinkedListExample()
+
+
+func appendLinkedListNodeExample(){
+    print("Example of appending elements into a linkedlist")
+    var list = LinkedList<Int>()
+    list.append(1)
+    list.append(2)
+    list.append(3)
+    print(list)
+}
+appendLinkedListNodeExample()
+
+func insertNodeAtIndexExample() {
+    print("Example of inserting a node at an index in a LinkedList")
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+    print("Before inserting: \(list)")
+    var middleNode = list.node(at: 1)!
+    for _ in 1...4 {
+        middleNode = list.insert(-1, after: middleNode)
+    }
+    print("After inserting: \(list)")
+}
+
+insertNodeAtIndexExample()
+
+
+func popOffLinkedListExample() {
+    print("Example of pop")
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+    print("Before popping list: \(list)")
+    let poppedValue = list.pop()
+    print("After popping list: \(list)")
+    print("Popped value: " + String(describing: poppedValue))
+}
+
+popOffLinkedListExample()
+
+
+func linkedListRemoveLastExample(){
+    print("Example of removing last node in linkedlist")
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+    print("Before removing last node: \(list)")
+    let removedValue = list.removeLast()
+    print("After removing last node: \(list)")
+    print("Removed value: " + String(describing: removedValue))
+}
+
+linkedListRemoveLastExample()
+
+func removingANodeAfterANodeExample() {
+    print("removing a node after a particular node")
+    var list = LinkedList<Int>()
+    list.push(3)
+    list.push(2)
+    list.push(1)
+    print("Before removing at particular index: \(list)")
+    let index = 1
+    let node = list.node(at: index - 1)!
+    let removedValue = list.remove(after: node)
+    print("After removing at index \(index): \(list)")
+    print("Removed value: " + String(describing: removedValue))
+}
+
+removingANodeAfterANodeExample() //O(1) IF you know where the node is, otherwise O(index) for you to find the index
+
+func linkedlistCollectionExample() {
+    print("Example of using collection")
+        var list = LinkedList<Int>()
+        for i in 0...9 {
+            list.append(i)
+        }
+        print("List: \(list)")
+        print("First element: \(list[list.startIndex])")
+        print("Array containing first 3 elements: \(Array(list.prefix(3)))")
+        print("Array containing last 3 elements: \(Array(list.suffix(3)))")
+        let sum = list.reduce(0, +)
+        print("Sum of all values: \(sum)")
+}
+
+linkedlistCollectionExample()
+
+
+func copyOnWriteExample() {
+    print("Example of array cow (copy on write)")
+    let array1 = [1, 2]
+    var array2 = array1
+    print("array1: \(array1)")
+    print("array2: \(array2)")
+    print("---After adding 3 to array 2---")
+    array2.append(3)
+    print("array1: \(array1)")
+    print("array2: \(array2)")
+}
+
+copyOnWriteExample()
+
+
+func linkedListCOWExample() {
+    
+   print("Example of LinkedList COW")
+        var list1 = LinkedList<Int>()
+        list1.append(1)
+        list1.append(2)
+        var list2 = list1
+    print("List1: \(list1)")
+    print("List2: \(list2)")
+    print("After appending 3 to list2")
+    list2.append(3)
+    print("List1: \(list1)")
+    print("List2: \(list2)")
+}
+
+linkedListCOWExample()
