@@ -146,3 +146,9 @@ print(minHeap)
   make a minimum heap.
  sift down the tree to make sure the children are set properly in the min heap fashion.
  */
+
+
+
+
+
+
